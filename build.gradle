@@ -1,16 +1,14 @@
-plugins {
-    id 'java'
+buildscript {
+    repositories {
+
+        jcenter()
+        mavenCentral()
+    }
+
+    dependencies {
+        //classpath "io.qameta.allure:allure-gradle:2.8.1"
+        // classpath "io.franzbecker:gradle-lombok:3.2.0"
+    }
+
 }
 
-group 'api-training'
-version '1.0-SNAPSHOT'
-
-sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-}
