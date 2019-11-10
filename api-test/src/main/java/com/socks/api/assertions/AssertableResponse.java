@@ -5,9 +5,11 @@ import io.restassured.response.Response;
 import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AssertableResponse {
-    private final Response register;
+    private final Response response;
 
-    public void shouldHave(Condition condition){
+    public AssertableResponse shouldHave(Condition condition){
+        condition.check(response);
+        return this;
 
     }
 }
