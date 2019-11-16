@@ -9,16 +9,16 @@ import javax.annotation.Generated;
 
 @Getter
 @Setter
-@Accessors(fluent =true)
+@Accessors(fluent = true)
 @Generated("com.robohorse.robopojogenerator")
-public class UserPayload{
+public class UserPayload {
 
-	@JsonProperty("password")
-	private String password;
+    @JsonProperty("password")
+    private String password;
 
-	@JsonProperty("email")
-	private String email;
+    @JsonProperty("email")
+    private String email;
 
-	@JsonProperty("username")
-	private String username;
+    @JsonProperty("username")
+    private String username;
 }

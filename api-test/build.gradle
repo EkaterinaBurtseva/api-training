@@ -11,23 +11,25 @@ repositories {
     maven {
         url "https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind"
     }
+    maven {
+        url "https://mvnrepository.com/artifact/io.franzbecker/gradle-lombok"
+    }
 
 
 }
 sourceCompatibility = 1.8
 
-ext{
-    restAssuredVersion ='3.3.0'
-    testNgVersion ='6.13'
+ext {
+    restAssuredVersion = '3.3.0'
+    testNgVersion = '6.13'
 }
 
 dependencies {
     compile "io.rest-assured:rest-assured:$restAssuredVersion"
-   // compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.8'
-    compile "org.projectlombok:lombok:1.18.10"
+    compileOnly 'org.projectlombok:lombok:1.18.10'
+    annotationProcessor 'org.projectlombok:lombok:1.18.10'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.0'
-   //compile group: 'com.github.javafaker', name: 'javafaker', version: '1.0.0'
-
+    compile group: 'com.github.javafaker', name: 'javafaker', version: '1.0.1'
 
     testCompile "org.testng:testng:$testNgVersion"
 }
@@ -35,9 +37,15 @@ dependencies {
 test {
     useTestNG()
 
-    systemProperties System.getProperties()
+    testLogging() {
+        events "PASSED", "FAILED", "SKIPPED"
+        showStandardStreams = true
+        exceptionFormat = "full"
+    }
 
     test.outputs.upToDateWhen { false }
+    systemProperties System.getProperties()
+
 }
 
 subprojects {
