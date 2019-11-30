@@ -8,14 +8,6 @@ version '1.0-SNAPSHOT'
 repositories {
     mavenCentral()
     jcenter()
-    maven {
-        url "https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind"
-    }
-    maven {
-        url "https://mvnrepository.com/artifact/io.franzbecker/gradle-lombok"
-    }
-
-
 }
 sourceCompatibility = 1.8
 
@@ -30,12 +22,19 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.10'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.0'
     compile group: 'com.github.javafaker', name: 'javafaker', version: '1.0.1'
-
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '0.9.26'
+    compile group: 'ch.qos.logback', name: 'logback-core', version: '1.2.3'
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.29'
+    compile group: 'org.aeonbits.owner', name: 'owner', version: '1.0.10'
+    compile group: 'io.qameta.allure', name: 'allure-rest-assured', version: '2.12.1'
+    compile group: 'ru.yandex.qatools.allure', name: 'allure-testng-adaptor', version: '1.5.4'
     testCompile "org.testng:testng:$testNgVersion"
+
 }
 
 test {
     useTestNG()
+    systemProperties System.getProperties()
 
     testLogging() {
         events "PASSED", "FAILED", "SKIPPED"
@@ -44,12 +43,12 @@ test {
     }
 
     test.outputs.upToDateWhen { false }
-    systemProperties System.getProperties()
-
 }
 
-subprojects {
-    apply plugin: 'java'
-    //  apply plugin: "io.qameta.allure"
-
+allure {
+    version = '2.8.1'
+    aspectjweaver = true
+    configuration = 'compile'
+    autoconfigure = true
 }
+

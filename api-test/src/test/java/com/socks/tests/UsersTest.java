@@ -2,9 +2,11 @@ package com.socks.tests;
 
 
 import com.github.javafaker.Faker;
+import com.socks.api.ProjectConfig;
 import com.socks.api.payloads.UserPayload;
 import com.socks.api.services.UserApiService;
 import io.restassured.RestAssured;
+import org.aeonbits.owner.ConfigFactory;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -18,11 +20,14 @@ import static org.hamcrest.core.IsNot.not;
 public class UsersTest {
 
     private final UserApiService userApiService = new UserApiService();
-    private final Faker faker = new Faker(new Locale("en"));
+    private Faker faker;
 
     @BeforeClass
     public void setUp() {
-        RestAssured.baseURI = "http://178.62.234.121/";
+
+        ProjectConfig config = ConfigFactory.create(ProjectConfig.class, System.getProperties());
+        RestAssured.baseURI = config.baseUrl();
+        faker = new Faker(new Locale(config.locale()));
     }
 
     @Test

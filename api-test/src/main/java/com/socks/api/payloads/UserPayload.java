@@ -3,6 +3,7 @@ package com.socks.api.payloads;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import javax.annotation.Generated;
@@ -11,6 +12,7 @@ import javax.annotation.Generated;
 @Setter
 @Accessors(fluent = true)
 @Generated("com.robohorse.robopojogenerator")
+@ToString
 public class UserPayload {
 
     @JsonProperty("password")
