@@ -1,3 +1,4 @@
 rootProject.name = 'api-training'
 include 'api-test'
+include 'ui-test'
 
